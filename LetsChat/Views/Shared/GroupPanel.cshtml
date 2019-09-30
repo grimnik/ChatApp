@@ -1,0 +1,23 @@
+﻿@model List<HomeGroupPlanelViewModel>
+
+@foreach (var item in Model)
+{
+   
+    <div class="jumbotron btn">
+        <p>@item.Naam</p>
+        <p>@item.Beschrijving</p>
+        @if (item.Foto != null)
+        {
+        var base64 = Convert.ToBase64String(item.Foto);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        <img src="@imgSrc" alt="@item.Naam + AlbumCover" />
+        }
+    </div>
+   
+
+}
+
+<div class="jumbotron" id="groups">
+    <h1 class="display-4 text-left">Groups</h1>
+    <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
+</div>

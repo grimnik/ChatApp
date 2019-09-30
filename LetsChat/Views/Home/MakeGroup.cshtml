@@ -1,0 +1,29 @@
+﻿@model HomeMakeGroupViewModel
+
+
+    <p class="text-center">testing testing suck a turd</p>
+    <form asp-action="MakeGroup" asp-controller="Home" method="post" role="form" id="groupsform" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Naam"></label>
+            <input asp-for="Naam" class="form-control" />
+            <span asp-validation-for="Naam"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Beschrijving"></label>
+            <input asp-for="Beschrijving" class="form-control" />
+            <span asp-validation-for="Beschrijving"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Public"></label>
+            <input asp-for="Public" class="form-check" />
+            <span asp-validation-for="Public"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Foto"></label>
+            <input asp-for="Foto" class="form-control-file" />
+            <span asp-validation-for="Foto"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-dark text-danger" value="Create!" />
+        </div>
+    </form>
