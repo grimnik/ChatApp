@@ -9,5 +9,6 @@ namespace LetsChat.Models
     public class HomeGroupPlanelViewModel
     {
        public virtual List<Groep> Groepen { get; set; }
+        public virtual List<Channel> Channels { get; set; }
     }
 }

@@ -20,19 +20,11 @@ namespace LetsChat.Controllers
         {
             _appContext = applicationDbContext;
             Groeps = new List<Groep>();
+            
         }
         public IActionResult Index()
         {
-            List<Groep> groepenFromDb = _appContext.Groepen.ToList();
-            List<Groep> groepen = new List<Groep>();
-           HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
-
-            foreach (var item in groepenFromDb)
-            {
-                groepen.Add(item);
-            }
-            vm.Groepen = groepen;
-            
+            HomeGroupPlanelViewModel vm = MakeSideList();
             return View(vm);
         }
 
@@ -75,6 +67,25 @@ namespace LetsChat.Controllers
             _appContext.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+        public IActionResult Channels(int Id)
+        {
+            HomeGroupPlanelViewModel vm = MakeSideList();
+            return View(vm);
+        }
+        public HomeGroupPlanelViewModel MakeSideList()
+        {
+            List<Groep> groepenFromDb = _appContext.Groepen.ToList();
+            List<Groep> groepen = new List<Groep>();
+            HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
+
+            foreach (var item in groepenFromDb)
+            {
+                groepen.Add(item);
+            }
+            vm.Groepen = groepen;
+
+            return vm;
         }
        
         

@@ -1,0 +1,28 @@
+﻿@model LetsChat.Models.HomeGroupPlanelViewModel
+<aside>
+    <div class="sidenav">
+        <br />
+        <h1 class="text-danger">Groepen</h1>
+        <br />
+        <br />
+        @foreach (var item in Model.Groepen)
+        {
+
+            <a class="jumbotron btn" role="button">
+                @if (item.Foto != null)
+                {
+                    var base64 = Convert.ToBase64String(item.Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@imgSrc" alt="@item.Naam + AlbumCover" height="100" width="100" />
+                }
+                <p>@item.Naam</p>
+                <hr />
+
+                <p>@item.Beschrijving</p>
+            </a>
+        }
+        <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
+        <br />
+        <br />
+    </div>
+</aside>
