@@ -68,7 +68,7 @@ namespace LetsChat.Controllers
 
             return RedirectToAction("Index");
         }
-        public IActionResult Channels(int Id)
+        public IActionResult Channels(int id)
         {
             HomeGroupPlanelViewModel vm = MakeSideList();
             return View(vm);
@@ -77,8 +77,13 @@ namespace LetsChat.Controllers
         {
             List<Groep> groepenFromDb = _appContext.Groepen.ToList();
             List<Groep> groepen = new List<Groep>();
+            List<int> Id = new List<int>();
             HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
-
+            foreach (var item in groepenFromDb)
+            {
+                Id.Add(item.Id);
+            }
+            vm.Id = Id;
             foreach (var item in groepenFromDb)
             {
                 groepen.Add(item);
