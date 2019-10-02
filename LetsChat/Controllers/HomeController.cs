@@ -14,14 +14,26 @@ namespace LetsChat.Controllers
     public class HomeController : Controller
     {
         public ApplicationDbContext _appContext { get; set; }
+        IList<Groep> Groeps;
 
         public HomeController(ApplicationDbContext applicationDbContext)
         {
             _appContext = applicationDbContext;
+            Groeps = new List<Groep>();
         }
         public IActionResult Index()
         {
-            return View();
+            List<Groep> groepenFromDb = _appContext.Groepen.ToList();
+            List<Groep> groepen = new List<Groep>();
+           HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
+
+            foreach (var item in groepenFromDb)
+            {
+                groepen.Add(item);
+            }
+            vm.Groepen = groepen;
+            
+            return View(vm);
         }
 
         public IActionResult Privacy()
@@ -62,24 +74,9 @@ namespace LetsChat.Controllers
             _appContext.Groepen.Add(groep);
             _appContext.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
-        public IActionResult GroupList()
-        {
-            IEnumerable<Groep> groepenFromDb = _appContext.Groepen.ToArray();
-            List<HomeGroupPlanelViewModel> model = new List<HomeGroupPlanelViewModel>();
-            foreach (var item in groepenFromDb)
-            {
-                model.Add(new HomeGroupPlanelViewModel()
-                {
-                    Id = item.Id,
-                    Naam = item.Naam,
-                    Beschrijving = item.Beschrijving,
-                    Foto = item.Foto,
-                    Public = item.Public
-                });
-            }
-            return PartialView(model);
-        }
+       
+        
     }
 }
