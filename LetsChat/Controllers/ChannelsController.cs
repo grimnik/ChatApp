@@ -22,12 +22,13 @@ namespace LetsChat.Controllers
         }
         public IActionResult CreateChannel(ChannelsCreateViewModel model)
         {
+
             _appContext.Channels.Add(new Domain.Channel()
             {
                 Naam = model.Naam
             });
             _appContext.SaveChanges();
-            return RedirectToAction("Channels","Home",);
+            return RedirectToAction("Channels","Home");
         }
     }
 }
