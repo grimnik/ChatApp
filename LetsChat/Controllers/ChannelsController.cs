@@ -40,5 +40,13 @@ namespace LetsChat.Controllers
             _appContext.SaveChanges();
             return RedirectToAction("Channels","Home");
         }
+        public IActionResult Chat(int id)
+        {
+            HomeController home = new HomeController(_appContext);
+            ChannelsChatViewModel model = new ChannelsChatViewModel();
+
+            BaseViewModel vm = home.MakeSideList(model);
+            return View(vm);
+        }
     }
 }

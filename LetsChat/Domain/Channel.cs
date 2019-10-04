@@ -9,7 +9,6 @@ namespace LetsChat.Domain
     {
         public int Id { get; set; }
         public string Naam { get; set; }
-        
-        
+        public ICollection<Message> Messages { get; set; }
     }
 }

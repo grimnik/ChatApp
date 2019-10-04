@@ -1,11 +1,11 @@
-﻿@model LetsChat.Models.ChannelHomeViewModel
+﻿@model LetsChat.Models.ChannelsChatViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 <aside>
     <div class="sidenav">
         <br />
-        <h1 class="text-danger">Groepen</h1>
+        <h1>Groepen</h1>
         <br />
         <br />
 
@@ -30,24 +30,19 @@
         <br />
     </div>
 </aside>
-@if (Model.Channels == null)
-{
-    <p class="text-center">No channels found</p>
-    <a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
 
-}
-else
-{
-    <section>
-    <h2 class="text-danger">Channels:</h2>
-        @foreach (var item in Model.Channels)
-        {
 
-            <a class="jumbotron btn" role="button" asp-action="Chat" asp-controller="Channels" asp-route-id="@item.Id">
-                <p class="text-center">@item.Naam</p>
-            </a>
 
-        }
-    <a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
-    </section>
-}
+
+<section></section>
+
+<article>
+    <form asp-action="PostMessage" asp-controller="Channels" method="post" role="form" enctype="application/x-www-form-urlencoded" id="entermessage">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Type Message Here!" asp-for="Message" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <input class="btn btn-dark text-danger" type="submit" id="button-addon2" value="+" />
+            </div>
+        </div>
+    </form>
+</article>
