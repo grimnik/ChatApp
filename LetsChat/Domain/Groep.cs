@@ -10,7 +10,7 @@ namespace LetsChat.Domain
     {
         public int Id { get; set; }
         public string Naam { get; set; }
-        public IEnumerable<Channel> Channels { get; set; }
+        public ICollection<Channel> Channels { get; set; }
         public bool Public { get; set; }
         public string Beschrijving { get; set; }
         public IEnumerable<IdentityUser> Users { get; set; }

@@ -76,11 +76,11 @@ nav{
 }
 /* The sidebar menu */
 .sidenav {
-    height: 90%; /* Full-height: remove this if you want "auto" height */
+    height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 20%; /* Set the width of the sidebar */
     position: Fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-    bottom:2.8rem; /* Stay at the top */
+    bottom:-2rem; /* Stay at the top */
     left: 0;
     background-color: black; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
@@ -96,10 +96,15 @@ nav{
         position:absolute;
        left:2rem;
     }
-  
-
-
-
+  .sidenav h1{
+      position:absolute;
+      top: 2rem;
+  }
+  #channelCreateButton{
+      position:absolute;
+      right:76rem
+  }
+ 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {
@@ -108,7 +113,4 @@ nav{
 
         
 } 
-.btn-dark{
-    position:absolute;
-    right:56rem;
-}
+

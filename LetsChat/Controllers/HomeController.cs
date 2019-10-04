@@ -24,7 +24,8 @@ namespace LetsChat.Controllers
         }
         public IActionResult Index()
         {
-            HomeGroupPlanelViewModel vm = MakeSideList();
+            HomeGroupPlanelViewModel model = new HomeGroupPlanelViewModel();
+            BaseViewModel vm = MakeSideList(model);
             return View(vm);
         }
 
@@ -70,15 +71,17 @@ namespace LetsChat.Controllers
         }
         public IActionResult Channels(int id)
         {
-            HomeGroupPlanelViewModel vm = MakeSideList();
+            ChannelHomeViewModel model = new ChannelHomeViewModel();
+            BaseViewModel vm = MakeSideList(model);
+            model.SelectedGroup = id;
             return View(vm);
         }
-        public HomeGroupPlanelViewModel MakeSideList()
+        public BaseViewModel MakeSideList(BaseViewModel model)
         {
             List<Groep> groepenFromDb = _appContext.Groepen.ToList();
             List<Groep> groepen = new List<Groep>();
             List<int> Id = new List<int>();
-            HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
+            BaseViewModel vm = model;
             foreach (var item in groepenFromDb)
             {
                 Id.Add(item.Id);

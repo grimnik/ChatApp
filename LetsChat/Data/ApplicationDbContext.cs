@@ -11,6 +11,7 @@ namespace LetsChat.Data
     {
         public DbSet<Groep> Groepen { get; set; }
         public DbSet<Channel> Channels { get; set; }
+        public DbSet<GroepChannel> GroepChannels { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -19,6 +20,9 @@ namespace LetsChat.Data
         {
             builder.Entity<Groep>().HasMany(g => g.Channels);
             builder.Entity<Groep>().HasMany(g => g.Users);
+           
+            builder.Entity<GroepChannel>().HasKey(g => g.ChannelId);
+            builder.Entity<GroepChannel>().HasKey(g => g.GroepId);
         }
     }
 }

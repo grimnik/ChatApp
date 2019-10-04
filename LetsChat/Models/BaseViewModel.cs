@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace LetsChat.Models
 {
-    public class HomeGroupPlanelViewModel : BaseViewModel
+    public abstract class BaseViewModel
     {
-       
-        
-        public virtual List<Channel> Channels { get; set; }
-      
+        public List<int> Id { get; set; }
+        public List<Groep> Groepen { get; set; }
     }
 }

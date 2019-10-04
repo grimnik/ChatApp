@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace LetsChat.Domain
 {
-    public class Channel
+    public class GroepChannel
     {
         public int Id { get; set; }
-        public string Naam { get; set; }
-        
-        
+        public int GroepId { get; set; }
+        public int ChannelId { get; set; }
     }
 }

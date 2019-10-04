@@ -4,14 +4,16 @@ using LetsChat.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LetsChat.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191004093248_HasKeyGroepId")]
+    partial class HasKeyGroepId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +27,7 @@ namespace LetsChat.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GroepId");
+                    b.Property<int>("GroepId");
 
                     b.Property<string>("Naam");
 
@@ -53,21 +55,6 @@ namespace LetsChat.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Groepen");
-                });
-
-            modelBuilder.Entity("LetsChat.Domain.GroepChannel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ChannelId");
-
-                    b.Property<int>("GroepId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GroepChannels");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -243,7 +230,8 @@ namespace LetsChat.Data.Migrations
                 {
                     b.HasOne("LetsChat.Domain.Groep")
                         .WithMany("Channels")
-                        .HasForeignKey("GroepId");
+                        .HasForeignKey("GroepId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

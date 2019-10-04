@@ -1,4 +1,5 @@
 ﻿using LetsChat.Data;
+using LetsChat.Domain;
 using LetsChat.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,16 +17,25 @@ namespace LetsChat.Controllers
         {
             _appContext = applicationDb;
         }
-        public IActionResult CreateChannel()
+        public IActionResult CreateChannel(int id)
         {
             return View();
         }
-        public IActionResult CreateChannel(ChannelsCreateViewModel model)
+        [HttpPost]
+        public IActionResult CreateChannel(ChannelsCreateViewModel model,int id)
         {
 
-            _appContext.Channels.Add(new Domain.Channel()
+           _appContext.Channels.Add(new Domain.Channel()
             {
-                Naam = model.Naam
+                Naam = model.Naam,
+                
+            });
+            _appContext.SaveChanges();
+            var channel = _appContext.Channels.FirstOrDefault(a => a.Naam == model.Naam);
+            _appContext.GroepChannels.Add(new Domain.GroepChannel()
+            {
+                GroepId = id,
+                ChannelId = channel.Id
             });
             _appContext.SaveChanges();
             return RedirectToAction("Channels","Home");
