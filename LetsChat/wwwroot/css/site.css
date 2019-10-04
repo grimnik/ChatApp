@@ -46,6 +46,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color:darkgray;
 }
 .footer {
   position: absolute;
@@ -100,11 +101,23 @@ nav{
       position:absolute;
       top: 2rem;
   }
-  #channelCreateButton{
+  /*#channelCreateButton{
       position:absolute;
       right:76rem
+  }*/
+  section{
+      position:absolute;
+      left:50rem;
+      width: 100rem;
+      
   }
- 
+  section .jumbotron{
+      width: 100%;
+      text-align:center;
+  }
+  h2{
+     
+  }
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {

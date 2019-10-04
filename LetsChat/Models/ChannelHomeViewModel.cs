@@ -9,5 +9,6 @@ namespace LetsChat.Models
     public class ChannelHomeViewModel : BaseViewModel
     {
         public int SelectedGroup { get; set; }
+        public List<Channel> Channels { get; set; }
     }
 }

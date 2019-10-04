@@ -25,10 +25,29 @@
             </a>
         }
 
-        <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home" >New Channel</a>
+        <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
         <br />
         <br />
     </div>
 </aside>
-<p class="text-center">No channels found</p>
-<a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
+@if (Model.Channels == null)
+{
+    <p class="text-center">No channels found</p>
+    <a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
+
+}
+else
+{
+    <section>
+    <h2>Channels:</h2>
+        @foreach (var item in Model.Channels)
+        {
+
+            <a class="jumbotron btn" role="button" asp-action="Index">
+                <p class="text-center">@item.Naam</p>
+            </a>
+
+        }
+    <a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
+    </section>
+}

@@ -72,7 +72,15 @@ namespace LetsChat.Controllers
         public IActionResult Channels(int id)
         {
             ChannelHomeViewModel model = new ChannelHomeViewModel();
+            List<GroepChannel> groepChannel = _appContext.GroepChannels.Where(a => a.GroepId == id).ToList();
+            foreach (var item in groepChannel)
+            {
+               model.Channels = _appContext.Channels.Where(a => a.Id == item.ChannelId).ToList();
+                
+                
+            }
             BaseViewModel vm = MakeSideList(model);
+            
             model.SelectedGroup = id;
             return View(vm);
         }
