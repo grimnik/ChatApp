@@ -14,14 +14,18 @@ namespace LetsChat.Controllers
     public class HomeController : Controller
     {
         public ApplicationDbContext _appContext { get; set; }
+        IList<Groep> Groeps;
 
         public HomeController(ApplicationDbContext applicationDbContext)
         {
             _appContext = applicationDbContext;
+            Groeps = new List<Groep>();
+            
         }
         public IActionResult Index()
         {
-            return View();
+            HomeGroupPlanelViewModel vm = MakeSideList();
+            return View(vm);
         }
 
         public IActionResult Privacy()
@@ -62,24 +66,33 @@ namespace LetsChat.Controllers
             _appContext.Groepen.Add(groep);
             _appContext.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
-        public IActionResult GroupList()
+        public IActionResult Channels(int id)
         {
-            IEnumerable<Groep> groepenFromDb = _appContext.Groepen.ToArray();
-            List<HomeGroupPlanelViewModel> model = new List<HomeGroupPlanelViewModel>();
+            HomeGroupPlanelViewModel vm = MakeSideList();
+            return View(vm);
+        }
+        public HomeGroupPlanelViewModel MakeSideList()
+        {
+            List<Groep> groepenFromDb = _appContext.Groepen.ToList();
+            List<Groep> groepen = new List<Groep>();
+            List<int> Id = new List<int>();
+            HomeGroupPlanelViewModel vm = new HomeGroupPlanelViewModel();
             foreach (var item in groepenFromDb)
             {
-                model.Add(new HomeGroupPlanelViewModel()
-                {
-                    Id = item.Id,
-                    Naam = item.Naam,
-                    Beschrijving = item.Beschrijving,
-                    Foto = item.Foto,
-                    Public = item.Public
-                });
+                Id.Add(item.Id);
             }
-            return PartialView(model);
+            vm.Id = Id;
+            foreach (var item in groepenFromDb)
+            {
+                groepen.Add(item);
+            }
+            vm.Groepen = groepen;
+
+            return vm;
         }
+       
+        
     }
 }

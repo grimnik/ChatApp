@@ -74,3 +74,41 @@ nav{
     left: 20rem;
     max-width:75%;
 }
+/* The sidebar menu */
+.sidenav {
+    height: 90%; /* Full-height: remove this if you want "auto" height */
+    width: 20%; /* Set the width of the sidebar */
+    position: Fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    bottom:2.8rem; /* Stay at the top */
+    left: 0;
+    background-color: black; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    
+} .sidenav .jumbotron{
+      padding:2rem;
+      width: 100%;
+       text-align:center;
+       color:black;
+  }
+    .sidenav .jumbotron img{
+        position:absolute;
+       left:2rem;
+    }
+  
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        
+} 
+.btn-dark{
+    position:absolute;
+    right:56rem;
+}

@@ -1,0 +1,34 @@
+﻿@model LetsChat.Models.HomeGroupPlanelViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<aside>
+    <div class="sidenav">
+        <br />
+        <h1 class="text-danger">Groepen</h1>
+        <br />
+        <br />
+
+        @for (int i = 0; i < Model.Groepen.Count; i++)
+        {
+            <a class="jumbotron btn" role="button" asp-action="Channels" asp-controller="Home" asp-route-id="@i">
+                @if (Model.Groepen[i].Foto != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Groepen[i].Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@imgSrc" alt="@Model.Groepen[i].Naam + AlbumCover" height="100" width="100" />
+                }
+                <p>@Model.Groepen[i].Naam</p>
+                <hr />
+
+                <p>@Model.Groepen[i].Beschrijving</p>
+            </a>
+        }
+
+        <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
+        <br />
+        <br />
+    </div>
+</aside>
+<p class="text-center">No channels found</p>
+<a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels">Create Channel</a>
