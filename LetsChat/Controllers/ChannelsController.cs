@@ -48,5 +48,9 @@ namespace LetsChat.Controllers
             BaseViewModel vm = home.MakeSideList(model);
             return View(vm);
         }
+        public IActionResult PostMessage(ChannelsChatViewModel model,int id)
+        {
+            return View();
+        }
     }
 }
