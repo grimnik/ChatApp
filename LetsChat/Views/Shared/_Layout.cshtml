@@ -1,4 +1,4 @@
-﻿@using System.Collections.Generic
+﻿@model  HomeGroupPlanelViewModel 
 
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@
     </header>
 
     <partial name="_CookieConsentPartial" />
-  
+    @await Html.PartialAsync("GroupPanel",model)
     @RenderBody()
 
 
