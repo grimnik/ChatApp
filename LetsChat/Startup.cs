@@ -14,6 +14,7 @@ using LetsChat.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LetsChat.Data.DataInitializer;
+using LetsChat.Hubs;
 
 namespace LetsChat
 {
@@ -44,6 +45,7 @@ namespace LetsChat
             services.AddAuthentication().AddJwtBearer();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +70,10 @@ namespace LetsChat
 
             app.UseAuthentication();
             UserAndRoleDataInitializer.SeedData(userManager, roleManager);
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+            });
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
