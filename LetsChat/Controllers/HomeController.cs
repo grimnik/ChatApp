@@ -8,6 +8,7 @@ using LetsChat.Models;
 using LetsChat.Data;
 using LetsChat.Domain;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LetsChat.Controllers
 {
@@ -39,10 +40,13 @@ namespace LetsChat.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [Authorize]
+
         public IActionResult MakeGroup()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult MakeGroup(HomeMakeGroupViewModel model)
         {
@@ -69,6 +73,7 @@ namespace LetsChat.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize]
         public IActionResult Channels(int id)
         {
             ChannelHomeViewModel model = new ChannelHomeViewModel();

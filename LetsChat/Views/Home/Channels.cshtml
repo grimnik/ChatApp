@@ -32,9 +32,10 @@
 </aside>
 @if (Model.Channels == null)
 {
+<article>
     <p class="text-center">No channels found</p>
     <a class="btn btn-dark text-danger" asp-action="CreateChannel" asp-controller="Channels" id="channelCreateButton" asp-route-id="@Model.SelectedGroup">Create Channel</a>
-
+</article>
 }
 else
 {

@@ -22,6 +22,8 @@ namespace LetsChat.Data
             builder.Entity<Groep>().HasMany(g => g.Channels);
             builder.Entity<Groep>().HasMany(g => g.Users);
             builder.Entity<Channel>().HasMany(c => c.Messages);
+            builder.Entity<Message>().HasKey(m =>  m.User.Id);
+            
             builder.Entity<GroepChannel>().HasKey(g => g.ChannelId);
             builder.Entity<GroepChannel>().HasKey(g => g.GroepId);
         }
