@@ -11,13 +11,15 @@
 
         @foreach (var message in Model.Messages)
         {
-
+        S
             <div class="jumbotron">
                 <p>@message.User.ToString() @message.ChatMessage</p>
             </div>
         }
     }*@
     <div class="container">
+    <script src="~/lib/signalr/dist/browser/signalr.js" ></script>
+    <script src="~/js/chat.js"></script>
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-6">&nbsp;</div>
@@ -34,15 +36,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">
                 <ul id="messagesList"></ul>
             </div>
         </div>
     </div>
 </section>
-    <script src="~/lib/signalr/dist/browser/signalr.js" ></script>
-    <script src="~/js/chat.js"></script>
 
 @*<article>
     <form asp-action="PostMessage" asp-controller="Channels" asp-route-id="@Model.ChannelId"  method="post" role="form" enctype="multipart/form-data" id="entermessage">

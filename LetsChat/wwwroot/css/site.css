@@ -108,11 +108,16 @@ nav{
       right:76rem
   }*/
   section{
-      position:absolute;
-      left:50rem;
-      width: 100rem;
+      position:fixed;
+      top:8rem;
+      left:30rem;
+      width: 85rem;
       
   }
+  section p{
+      font-size:2rem;
+  }
+  
   section .jumbotron{
       width: 100%;
       text-align:center;
@@ -139,6 +144,7 @@ h1{
     padding-bottom:10rem;
     padding-top:10rem;
 }
+
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {
