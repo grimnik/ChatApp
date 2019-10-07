@@ -1,59 +1,7 @@
-﻿    @page
+﻿
 @model LetsChat.Models.ChannelsChatViewModel
 
 
-
-
-
-<section class="chat">
-    @*@if (Model.Messages != null)
-    {
-
-        @foreach (var message in Model.Messages)
-        {
-        S
-            <div class="jumbotron">
-                <p>@message.User.ToString() @message.ChatMessage</p>
-            </div>
-        }
-    }*@
-    <div class="container">
-    <script src="~/lib/signalr/dist/browser/signalr.js" ></script>
-    <script src="~/js/chat.js"></script>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                User..........<input type="text" id="userInput" />
-                <br />
-                Message...<input type="text" id="messageInput" />
-                <input type="button" id="sendButton" value="Send Message" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">&nbsp;</div>
-            <div class="col-12">
-                <ul id="messagesList"></ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-@*<article>
-    <form asp-action="PostMessage" asp-controller="Channels" asp-route-id="@Model.ChannelId"  method="post" role="form" enctype="multipart/form-data" id="entermessage">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Type Message Here!" asp-for="Message" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <input class="btn btn-dark text-danger" type="submit" id="button-addon2"  value="+" />
-            </div>
-        </div>
-    </form>
-</article>
 <aside>
     <div class="sidenav">
         <br />
@@ -81,4 +29,60 @@
         <br />
         <br />
     </div>
-</aside>*@
+</aside>
+
+
+<section id="chat">
+    @if (Model.Messages != null)
+    {
+
+        @foreach (var message in Model.Messages)
+        {
+
+            <div class="jumbotron">
+                <p>@message.User.ToString() @message.ChatMessage</p>
+            </div>
+        }
+    }
+</section>
+    @*<div class="container">
+<section class="chat">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">&nbsp;</div>
+            <div class="col-6">
+                User..........<input type="text" id="userInput" />
+                <br />
+                Message...<input type="text" id="messageInput" />
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">
+                <ul id="messagesList"></ul>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<article>
+    <form asp-action="PostMessage" asp-controller="Channels" asp-route-id="@Model.ChannelId"  method="post" role="form" enctype="multipart/form-data" id="entermessage">
+        <div class="input-group mb-3">
+            <input id="messageText" type="text" class="form-control" placeholder="Type Message Here!" asp-for="Message" aria-describedby="sumbitButton">
+            <div class="input-group-append">
+                <input class="btn btn-dark text-danger" type="submit" id="submitButton"  value="+" />
+            </div>
+        </div>
+    </form>
+</article>
+@section scripts{ 
+    <script src="~/lib/signalr/dist/browser/signalr.js" ></script>
+ <script src="~/js/signrReqHandler.js"></script>
+   <script src="~/js/chat.js"></script>
+}

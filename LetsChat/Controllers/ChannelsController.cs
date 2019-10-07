@@ -19,9 +19,11 @@ namespace LetsChat.Controllers
     public class ChannelsController : Controller
     {
         public ApplicationDbContext _appContext { get; set; }
-        public ChannelsController(ApplicationDbContext applicationDb)
+        public readonly UserManager<IdentityUser> _userManager;
+        public ChannelsController(ApplicationDbContext applicationDb, UserManager<IdentityUser> userManager)
         {
             _appContext = applicationDb;
+            _userManager = userManager;
         }
         public IActionResult CreateChannel(int id)
         {
@@ -50,8 +52,11 @@ namespace LetsChat.Controllers
         }
         [Authorize]
 
-        public IActionResult Chat(int id)
+        public async Task<IActionResult> Chat(int id)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+            ViewBag.CurrentUserName = currentUser.UserName;
+            var messages = await _appContext.Messages.ToListAsync();
             HomeController home = new HomeController(_appContext);
             ChannelsChatViewModel model = new ChannelsChatViewModel();
             model.ChannelId = id;
@@ -61,20 +66,29 @@ namespace LetsChat.Controllers
 
             return View(vm);
         }
+        
         [HttpPost]
         [Authorize]
-        public IActionResult PostMessage(ChannelsChatViewModel model,int id)
+        public async Task<IActionResult> PostMessage(ChannelsChatViewModel model,int id)
         {
-           var user = _appContext.Users.FirstOrDefault(a => a.Id == User.FindFirst(ClaimTypes.NameIdentifier).Value);
-           
-            _appContext.Messages.Add(new Message()
+            if (ModelState.IsValid)
             {
-                Channel = _appContext.Channels.FirstOrDefault(c => c.Id == id),
-                User = user,
-                ChatMessage = model.Message
-            });
-            _appContext.SaveChanges();
-            return RedirectToAction("Chat",new{id = id }
+
+            ///*message.User.UserName*/ = User.Identity.Name;
+            var sender = await _userManager.GetUserAsync(User);
+                //message.User.Id = sender.Id;
+                await _appContext.Messages.AddAsync(new Message()
+                {
+                    ChatMessage = model.Message,
+                    User = sender,
+                    Channel = _appContext.Channels.FirstOrDefault(c => c.Id == id)
+                });
+                await _appContext.SaveChangesAsync();
+            }
+                return RedirectToAction("Chat", new { id = id }
+
+           
+            
             );
         }
     }

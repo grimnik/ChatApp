@@ -108,7 +108,7 @@ nav{
       right:76rem
   }*/
   section{
-      position:fixed;
+      position:absolute;
       top:8rem;
       left:30rem;
       width: 85rem;

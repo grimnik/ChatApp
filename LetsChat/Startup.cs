@@ -72,7 +72,7 @@ namespace LetsChat
             UserAndRoleDataInitializer.SeedData(userManager, roleManager);
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chatHub");
+                routes.MapHub<ChatHub>("/Channels/Chat");
             });
             app.UseMvc(routes =>
             {

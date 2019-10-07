@@ -15,6 +15,7 @@ namespace LetsChat.Controllers
     public class HomeController : Controller
     {
         public ApplicationDbContext _appContext { get; set; }
+
         IList<Groep> Groeps;
 
         public HomeController(ApplicationDbContext applicationDbContext)
