@@ -108,20 +108,21 @@ nav{
       right:76rem
   }*/
   section{
-      position:absolute;
+      position:relative;
       top:8rem;
-      left:35rem;
+      left:40rem;
       width: 85rem;
       padding-bottom:20rem;
      
   }
   section p{
-      font-size:2rem;
+      font-size:4rem;
   }
   
   section .jumbotron{
       width: 100%;
       text-align:center;
+      font-size: 2rem;
   }
 article {
     position: fixed;

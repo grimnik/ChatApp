@@ -1,34 +1,7 @@
 ﻿@*@model LetsChat.Models.ChannelsChatViewModel
 
 
-    <aside>
-        <div class="sidenav">
-            <br />
-            <h1>Groepen</h1>
-            <br />
-            <br />
 
-            @for (int i = 0; i < Model.Groepen.Count; i++)
-            {
-                <a class="jumbotron btn" role="button" asp-action="Channels" asp-controller="Home" asp-route-id="@i">
-                    @if (Model.Groepen[i].Foto != null)
-                    {
-                        var base64 = Convert.ToBase64String(Model.Groepen[i].Foto);
-                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                        <img src="@imgSrc" alt="@Model.Groepen[i].Naam + AlbumCover" height="100" width="100" />
-                    }
-                    <p>@Model.Groepen[i].Naam</p>
-                    <hr />
-
-                    <p>@Model.Groepen[i].Beschrijving</p>
-                </a>
-            }
-
-            <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
-            <br />
-            <br />
-        </div>
-    </aside>
 
 
     <section id="chat">
@@ -61,31 +34,66 @@
         <script src="~/js/chat.js"></script>
         }*@
 
-@page
-    <section>
-        <div class="container">
-            <div class="row">&nbsp;</div>
-            <div class="row">
-                <div class="col-6">&nbsp;</div>
-                <div class="col-6">
-                    User..........<input type="text" id="userInput" />
-                    <br />
-                    Message...<input type="text" id="messageInput" />
-                    <input type="button" id="sendButton" value="Send Message" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <hr />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">&nbsp;</div>
-                <div class="col-6">
-                    <ul id="messagesList"></ul>
-                </div>
+
+@model ChannelsChatViewModel
+<section>
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">&nbsp;</div>
+            <div class="col-6">
+
+
+                User..........<input class="form-control" type="text" id="userInput" />
+                <br />
+
+                Message...<input class="form-control" type="text" id="messageInput" />
+
+                <input type="submit" id="sendButton" value="+" class="btn btn-dark text-danger" />
+
+
             </div>
         </div>
-        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
-        <script src="~/js/chat.js"></script>
-    </section>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">
+                <ul id="messagesList"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</section>
+<aside>
+    <div class="sidenav">
+        <br />
+        <h1>Groepen</h1>
+        <br />
+        <br />
+
+        @for (int i = 0; i < Model.Groepen.Count; i++)
+        {
+            <a class="jumbotron btn" role="button" asp-action="Channels" asp-controller="Home" asp-route-id="@i">
+                @if (Model.Groepen[i].Foto != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Groepen[i].Foto);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@imgSrc" alt="@Model.Groepen[i].Naam + AlbumCover" height="100" width="100" />
+                }
+                <p>@Model.Groepen[i].Naam</p>
+                <hr />
+
+                <p>@Model.Groepen[i].Beschrijving</p>
+            </a>
+        }
+
+        <a class="btn btn-dark text-danger" role="button" asp-action="MakeGroup" asp-controller="Home">New Channel</a>
+        <br />
+        <br />
+    </div>
+</aside>
