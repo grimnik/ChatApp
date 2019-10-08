@@ -43,7 +43,13 @@ namespace LetsChat
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication().AddJwtBearer();
-
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:44393")
+                       .AllowCredentials();
+            }));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSignalR();
         }
@@ -67,12 +73,12 @@ namespace LetsChat
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             UserAndRoleDataInitializer.SeedData(userManager, roleManager);
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/Channels/Chat");
+                routes.MapHub<ChatHub>("/chatHub");
             });
             app.UseMvc(routes =>
             {

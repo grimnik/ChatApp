@@ -64,7 +64,7 @@ namespace LetsChat.Controllers
            
             BaseViewModel vm = home.MakeSideList(model);
 
-            return View(vm);
+            return View();
         }
         
         [HttpPost]

@@ -110,9 +110,10 @@ nav{
   section{
       position:absolute;
       top:8rem;
-      left:30rem;
+      left:35rem;
       width: 85rem;
-      
+      padding-bottom:20rem;
+     
   }
   section p{
       font-size:2rem;
