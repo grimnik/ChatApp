@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LetsChat.Domain;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,18 @@ namespace LetsChat.Data.DataInitializer
 {
     public class UserAndRoleDataInitializer
     {
-        public static void SeedData(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
         }
-        private static void SeedUsers(UserManager<IdentityUser> userManager)
+        private static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
             if (userManager.FindByEmailAsync("Grimnik@Admin.com").Result == null)
             {
 
-                PasswordHasher<IdentityUser> passwordHash = new PasswordHasher();
-                IdentityUser user = new IdentityUser()
+                PasswordHasher<ApplicationUser> passwordHash = new PasswordHasher();
+                ApplicationUser user = new ApplicationUser()
                 {
                     UserName = "Grimnik@Admin.com",
                     Email = "Grimnik@Admin.com",
@@ -32,8 +33,8 @@ namespace LetsChat.Data.DataInitializer
             }
             if (userManager.FindByEmailAsync("Joske@Member.com").Result == null)
             {
-                PasswordHasher<IdentityUser> passwordHash = new PasswordHasher();
-                IdentityUser user = new IdentityUser()
+                PasswordHasher<ApplicationUser> passwordHash = new PasswordHasher();
+                ApplicationUser user = new ApplicationUser()
                 {
                     UserName = "Joske@Member.com",
                     Email = "Joske@Member.com",

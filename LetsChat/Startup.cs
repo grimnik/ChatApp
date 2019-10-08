@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LetsChat.Data.DataInitializer;
 using LetsChat.Hubs;
+using LetsChat.Domain;
 
 namespace LetsChat
 {
@@ -40,8 +41,9 @@ namespace LetsChat
             services.AddDbContext<ApplicationDbContext>(options =>
                   options.UseSqlServer(
                       Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
+           
             services.AddAuthentication().AddJwtBearer();
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder =>
@@ -55,7 +57,7 @@ namespace LetsChat
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager,
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager,
                               RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())

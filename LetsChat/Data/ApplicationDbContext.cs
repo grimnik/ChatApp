@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LetsChat.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Groep> Groepen { get; set; }
         public DbSet<Channel> Channels { get; set; }
@@ -17,6 +17,7 @@ namespace LetsChat.Data
             : base(options)
         {
         }
+        
         public ApplicationDbContext(ModelBuilder builder)
         {
             builder.Entity<Groep>().HasMany(g => g.Channels);

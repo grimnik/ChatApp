@@ -10,7 +10,7 @@ namespace LetsChat.Domain
     {
         public int Id { get; set; }
         public Channel Channel { get; set; }
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
         public string ChatMessage { get; set; }
     }
 }

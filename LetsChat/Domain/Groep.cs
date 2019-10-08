@@ -13,7 +13,7 @@ namespace LetsChat.Domain
         public ICollection<Channel> Channels { get; set; }
         public bool Public { get; set; }
         public string Beschrijving { get; set; }
-        public IEnumerable<IdentityUser> Users { get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
         public byte[] Foto { get; set; }
     }
 }

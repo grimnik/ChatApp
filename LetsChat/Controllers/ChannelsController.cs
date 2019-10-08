@@ -19,8 +19,8 @@ namespace LetsChat.Controllers
     public class ChannelsController : Controller
     {
         public ApplicationDbContext _appContext { get; set; }
-        public readonly UserManager<IdentityUser> _userManager;
-        public ChannelsController(ApplicationDbContext applicationDb, UserManager<IdentityUser> userManager)
+        public readonly UserManager<ApplicationUser> _userManager;
+        public ChannelsController(ApplicationDbContext applicationDb, UserManager<ApplicationUser> userManager)
         {
             _appContext = applicationDb;
             _userManager = userManager;
