@@ -84,6 +84,7 @@ namespace LetsChat.Controllers
                     Channel = _appContext.Channels.FirstOrDefault(c => c.Id == id)
                 });
                 await _appContext.SaveChangesAsync();
+               
             }
                 return RedirectToAction("Chat", new { id = id }
 

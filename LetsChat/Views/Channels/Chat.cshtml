@@ -1,10 +1,10 @@
-﻿@*@model LetsChat.Models.ChannelsChatViewModel
+﻿@model LetsChat.Models.ChannelsChatViewModel
 
 
 
 
 
-    <section id="chat">
+    @*<section id="chat">
         @if (Model.Messages != null)
         {
 
@@ -16,9 +16,9 @@
                 </div>
             }
         }
-    </section>
+    </section>*@
 
-    <article>
+    @*<article>
         <form asp-action="PostMessage" asp-controller="Channels" asp-route-id="@Model.ChannelId" method="post" role="form" enctype="multipart/form-data" id="entermessage">
             <div class="input-group mb-3">
                 <input id="messageInput" type="text" class="form-control" placeholder="Type Message Here!" asp-for="Message" aria-describedby="sendButton">
@@ -33,36 +33,48 @@
         <script src="~/js/signrReqHandler.js"></script>
         <script src="~/js/chat.js"></script>
         }*@
+    <article>
+        <form asp-action="PostMessage" asp-controller="Channels" asp-route-id="@Model.ChannelId" method="post" role="form" enctype="multipart/form-data" id="entermessage">
 
+         <input hidden class="form-control" type="text" id="userInput" asp-for="@User.Identity.Name" value="@User.Identity.Name" readonly />
+            <br />
 
-@model ChannelsChatViewModel
+            <div class="input-group mb-3">
+                <input class="form-control" type="text" id="messageInput" asp-for="Message" aria-describedby="sendButton" />
+                <div class="input-group-append form-group">
+                    <input value="+" class="btn btn-dark text-danger" id="sendButton" type="submit" />
+
+                </div>
+            </div>
+        </form>
+    </article>
+
 <section>
     <div class="container">
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-6">&nbsp;</div>
             <div class="col-6">
-
-
-                User..........<input class="form-control" type="text" id="userInput" />
-                <br />
-
-                Message...<input class="form-control" type="text" id="messageInput" />
-
-                <input type="submit" id="sendButton" value="+" class="btn btn-dark text-danger" />
-
+            
 
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-12">&nbsp;</div>
             <div class="col-12">
-                <ul id="messagesList"></ul>
+                @if (Model.Messages != null)
+                {
+
+                    @foreach (var message in Model.Messages)
+                    {
+
+                        <div class="jumbotron">
+                            <p>@message.User.ToString() says @message.ChatMessage</p>
+                        </div>
+                    }
+                }
+                <div id="messagesList"></div>
             </div>
         </div>
     </div>

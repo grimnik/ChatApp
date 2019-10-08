@@ -81,7 +81,7 @@ nav{
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 20%; /* Set the width of the sidebar */
     position: Fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
+    z-index: 2; /* Stay on top */
     bottom:-2rem; /* Stay at the top */
     left: 0;
     background-color: gray; /* Black */
@@ -116,7 +116,7 @@ nav{
      
   }
   section p{
-      font-size:4rem;
+      font-size:2rem;
   }
   
   section .jumbotron{
@@ -127,16 +127,17 @@ nav{
 article {
     position: fixed;
     bottom: 3rem;
-    
+    z-index:1;
     width: 100%;
     background-color:black;
     padding-top:2rem;
     padding-bottom:1rem;
+    
 }
 article form{
     position:relative;
-    left:50rem;
-    width: 100rem;
+    left:30%;
+    width: 50rem;
 }
 h1{
     color:darkred;
