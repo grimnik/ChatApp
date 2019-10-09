@@ -61,7 +61,7 @@ namespace LetsChat.Controllers
             ChannelsChatViewModel model = new ChannelsChatViewModel();
             model.ChannelId = id;
             model.Messages = _appContext.Messages.Include(u => u.User).Where(m => m.Channel.Id == id).ToList();
-           
+            model.Channel = _appContext.Channels.FirstOrDefault(c => c.Id == id);
             BaseViewModel vm = home.MakeSideList(model);
 
             return View(vm);

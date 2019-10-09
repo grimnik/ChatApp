@@ -53,6 +53,7 @@
     <div class="container">
         <div class="row">&nbsp;</div>
         <div class="row">
+<h1 class="text-center text-danger">@Model.Channel.Naam</h1>
             <div class="col-6">&nbsp;</div>
             <div class="col-6">
             
@@ -68,10 +69,21 @@
 
                     @foreach (var message in Model.Messages)
                     {
+                        if (message.User.UserName == User.Identity.Name)
+                        {
 
-                        <div class="jumbotron">
-                            <p>@message.User.ToString() says @message.ChatMessage</p>
+                        <div class="jumbotron text-right chattextme">
+                            <p>@message.User.ToString() says</p>
+                            <p>@message.ChatMessage</p>
                         </div>
+                        }
+                        else
+                        {
+                            <div class="jumbotron text-left chattextother" >
+                                <p>@message.User.ToString() says</p>
+                                <p>@message.ChatMessage</p>
+                            </div>
+                        }
                     }
                 }
                 <div id="messagesList"></div>

@@ -121,8 +121,9 @@ nav{
   
   section .jumbotron{
       width: 100%;
+      
       text-align:center;
-      font-size: 2rem;
+      font-size: 3rem;
   }
 article {
     position: fixed;
@@ -156,4 +157,33 @@ h1{
 
         
 } 
+.chattextme{
+    background-color:dodgerblue;
+    padding-top:1rem;
+    color:white;
+    height:1rem;
+    
+}
+    .chattextme p {
+        font-size: 1rem;
+        
+    }
+    .chattextme :last-child{
+        font-size:2rem;
+    margin-top: -1.5rem;
+    }
+.chattextother {
+    height: 1rem;
+    padding-top: 1rem;
+}
+    .chattextother p {
+        font-size: 1rem;
+        
+    }
+    .chattextother :last-child{
+        font-size:2rem;
+
+        margin-top:-1.5rem;
+    }
+    
 
