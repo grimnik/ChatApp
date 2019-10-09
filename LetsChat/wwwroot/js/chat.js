@@ -17,7 +17,7 @@ connection.on("recieveMessage", function (user, message) {
     var p = document.createElement("p");
     li.append(p);
     p.textContent = msg;
-    li.className = "jumbotron text-right chattextother"
+    li.className = "jumbotron text-left chattextother"
     document.getElementById("messagesList").appendChild(li);
 });
 
