@@ -15,9 +15,9 @@ namespace LetsChat.Hubs
 {
     public class ChatHub : Hub
     {
-        public readonly UserManager<IdentityUser> _userManager;
+        public readonly UserManager<ApplicationUser> _userManager;
         public ApplicationDbContext _appContext { get; set; }
-        public ChatHub(ApplicationDbContext applicationDb, UserManager<IdentityUser> userManager)
+        public ChatHub(ApplicationDbContext applicationDb, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
 

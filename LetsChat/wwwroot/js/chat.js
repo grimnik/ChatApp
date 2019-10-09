@@ -7,10 +7,17 @@ document.getElementById("sendButton").disabled = true;
 
 connection.on("recieveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
+    var encodedMsg = user + " says " ;
+    var message = msg;
     var li = document.createElement("div");
-    li.textContent = encodedMsg;
-    li.className = "jumbotron"
+    
+    var p1 = document.createElement("p");
+    li.append(p1);
+    p1.textContent = encodedMsg;
+    var p = document.createElement("p");
+    li.append(p);
+    p.textContent = msg;
+    li.className = "jumbotron text-right chattextother"
     document.getElementById("messagesList").appendChild(li);
 });
 
